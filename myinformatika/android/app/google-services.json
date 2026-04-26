@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "898309326529",
+    "project_id": "ets-ppb-b0af4",
+    "storage_bucket": "ets-ppb-b0af4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:898309326529:android:08672d92f8bb3325ed7640",
+        "android_client_info": {
+          "package_name": "com.example.myinformatika"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnlTixmb-GjbytJh3V4ND5dDvUAWDBTJA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
