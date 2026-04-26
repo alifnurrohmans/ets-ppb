@@ -9,6 +9,11 @@ import 'package:myinformatika/screens/home_screen.dart';
 import 'package:myinformatika/screens/camera_screen.dart';
 import 'package:myinformatika/screens/location_screen.dart';
 import 'package:myinformatika/screens/courses_list_screen.dart';
+import 'package:myinformatika/screens/create_course_screen.dart';
+import 'package:myinformatika/screens/course_detail_screen.dart';
+import 'package:myinformatika/screens/instructor_enrollments_screen.dart';
+import 'package:myinformatika/screens/student_enrollments_screen.dart';
+import 'package:myinformatika/models/ecourse_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,6 +49,14 @@ class MyApp extends StatelessWidget {
         '/location': (context) => const LocationScreen(),
         '/student/courses': (context) => const CoursesListScreen(isInstructor: false),
         '/instructor/courses': (context) => const CoursesListScreen(isInstructor: true),
+        '/instructor/create-course': (context) {
+          final args = ModalRoute.of(context)!.settings.arguments;
+          return CreateCourseScreen(course: args is ECourseModel ? args as ECourseModel : null);
+        },
+        '/student/course-detail': (context) => const CourseDetailScreen(),
+        '/instructor/course-detail': (context) => const CourseDetailScreen(),
+        '/student/enrollments': (context) => const StudentEnrollmentsScreen(),
+        '/instructor/enrollments': (context) => const InstructorEnrollmentsScreen(),
       },
     );
   }

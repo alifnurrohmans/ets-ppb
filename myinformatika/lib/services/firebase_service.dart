@@ -290,6 +290,52 @@ class FirebaseService {
     }
   }
 
+  /// Get enrollment by student and course
+  Future<EnrollmentModel?> getEnrollmentByStudentAndCourse(String studentId, String ecourseId) async {
+    try {
+      final query = await _firestore
+          .collection('enrollments')
+          .where('studentId', isEqualTo: studentId)
+          .where('ecourseId', isEqualTo: ecourseId)
+          .limit(1)
+          .get();
+
+      if (query.docs.isNotEmpty) {
+        return EnrollmentModel.fromMap(query.docs.first.data());
+      }
+      return null;
+    } catch (e) {
+      throw Exception('Error getting enrollment by student and course: $e');
+    }
+  }
+
+  /// Delete enrollment by student and course (if exists)
+  Future<void> deleteEnrollmentByStudentAndCourse(String studentId, String ecourseId) async {
+    try {
+      final query = await _firestore
+          .collection('enrollments')
+          .where('studentId', isEqualTo: studentId)
+          .where('ecourseId', isEqualTo: ecourseId)
+          .limit(1)
+          .get();
+
+      if (query.docs.isNotEmpty) {
+        final docId = query.docs.first.id;
+        await _firestore.collection('enrollments').doc(docId).delete();
+
+        // Decrement enrollment count on ecourse
+        await _firestore
+            .collection('ecourses')
+            .doc(ecourseId)
+            .update({
+          'enrollmentCount': FieldValue.increment(-1),
+        });
+      }
+    } catch (e) {
+      throw Exception('Error deleting enrollment by student and course: $e');
+    }
+  }
+
   /// Get student course count
   Future<int> getStudentEnrollmentCount(String studentId) async {
     try {
