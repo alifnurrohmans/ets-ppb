@@ -47,23 +47,23 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('My Informatika'),
         centerTitle: true,
         actions: [
-          PopupMenuButton(
+          PopupMenuButton<String>(
             itemBuilder: (context) => [
-              const PopupMenuItem(
+              const PopupMenuItem<String>(
                 value: 'profile',
                 child: Text('Profile'),
               ),
-              const PopupMenuItem(
+              const PopupMenuItem<String>(
                 value: 'settings',
                 child: Text('Settings'),
               ),
               const PopupMenuDivider(),
-              const PopupMenuItem(
+              const PopupMenuItem<String>(
                 value: 'logout',
                 child: Text('Logout'),
               ),
             ],
-            onSelected: (value) {
+            onSelected: (String? value) {
               if (value == 'logout') {
                 _logout();
               } else if (value == 'profile') {

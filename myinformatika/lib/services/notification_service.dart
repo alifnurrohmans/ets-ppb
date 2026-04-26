@@ -1,4 +1,6 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class NotificationService {
   static final NotificationService _instance = NotificationService._internal();
@@ -149,7 +151,4 @@ class NotificationService {
     debugPrint('Notification dismissed: ${receivedAction.payload}');
   }
 }
-
-// Import flutter foundation for debugPrint
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+// (imports for flutter are at top of file)

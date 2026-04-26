@@ -116,8 +116,10 @@ class AuthService {
   /// Check if email exists
   Future<bool> emailExists(String email) async {
     try {
-      final methods = await _auth.fetchSignInMethodsForEmail(email);
-      return methods.isNotEmpty;
+      // Use Firestore users collection to check if email exists instead of
+      // relying on FirebaseAuth method (compatibility across versions).
+      final user = await _firebaseService.getUserByEmail(email);
+      return user != null;
     } catch (e) {
       throw Exception('Error checking email: $e');
     }
